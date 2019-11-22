@@ -1,12 +1,12 @@
 
-# react-native-react-native-ftp-jm
+# react-native-ftp-jm
 
 ## 安装方法
 
-`$ npm install react-native-react-native-ftp-jm --save`
+`$ npm install react-native-ftp-jm --save`
 
 ### 关联原生
-`$ react-native link react-native-react-native-ftp-jm`
+`$ react-native link react-native-ftp-jm`
 
 ***
 # UDPScoket模块（模块名：JMUDPScoketManager）
