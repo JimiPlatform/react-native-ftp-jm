@@ -57,6 +57,7 @@ rejecter | RCTPromiseRejectBlock | 是 | 失败回调（RN专属回调）
 | - | :-: | :-: | - |
 code | Int | 是 | 发送相应标识code码
 data | string | 否 | 当接受到服务端数据时，data内将包含服务端数据json字符串
+
 `{"code":600,"data":""}`
 
 - code码:
@@ -198,7 +199,7 @@ rejecter | RCTPromiseRejectBlock | 是 | 失败回调（RN专属回调）
 path | string | 是 | 原始文件路径
 toPath | string | 是 | 将要移动的文件路径
 overwrite | Bool | 是 | 若带移动的文件路径上有文件是否覆盖
-resolver | RCTPromiseResolveBlock | 是 | 成功回调（RN专属回调）
+resolver | RCTPromiseResolveBlock | 是 | 成功回调（RN专属回调）body:{path:""} body为json字符串 path为文件在服务端路径
 rejecter | RCTPromiseRejectBlock | 是 | 失败回调（RN专属回调）
 
 ## 关闭FTP链接
