@@ -95,9 +95,10 @@ class JMUDPScoketManager: RCTEventEmitter {
         self.port = UInt16(port)
         self.sendTimeout = Double(timeout)
         socket = GCDAsyncUdpSocket(delegate: self , delegateQueue: DispatchQueue.main)
+        //监听接口&接收数据
         do {
             try socket?.bind(toPort: UInt16(port))
-                
+            try socket?.beginReceiving()
             resolver(nil)
 
         } catch  {
@@ -112,18 +113,6 @@ class JMUDPScoketManager: RCTEventEmitter {
               tag:Int,
               resolver:@escaping RCTPromiseResolveBlock,
               rejecter:@escaping RCTPromiseRejectBlock) {
-        DispatchQueue.main.async {  //需要在主线程运行
-            FTPConnect().startConnect { [weak self](msg, success) in
-                print("MSG:\(msg), success:\(success)")
-                guard let weakSelf = self else { return }
-                if ( success) {
-                    let dataDic = NSMutableDictionary.init()
-                    dataDic.setValue(success, forKey: "success")
-                    dataDic.setValue(success == true ? "已经成功连接设备!" : "与设备连接异常!", forKey: "msg")
-                }
-            }
-        }
-        return
         guard let socket = self.socket,
             let dataStr = data.data(using: .ascii),
             let host = self.host,
@@ -132,11 +121,6 @@ class JMUDPScoketManager: RCTEventEmitter {
                 rejecter("605","未进行配置参数或data不正确",nil)
             return
         }
-//        sendSuccessCallback = nil
-//        sendFailCallback = nil
-//        sendSuccessCallback = resolver
-//        sendFailCallback = rejecter
-
         do {
             try socket.enableBroadcast(true)
             socket.send(dataStr, toHost: host, port: port, withTimeout: sendTimeout, tag: tag)
@@ -193,7 +177,8 @@ extension JMUDPScoketManager: GCDAsyncUdpSocketDelegate{
     }
     //接受到数据
     func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
-        
+        let str = String.init(data: address, encoding: String.Encoding.utf8)
+        print("dpSocket(_ sock adress = \(str) filterContext = \(filterContext)")
         if let dict = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) {
             sendEvent(603,dict)
         }

@@ -18,11 +18,11 @@ RCT_EXTERN_METHOD(configFtpSyncFile:(NSString *)baseUrl mode:(NSString *)mode po
 
 RCT_EXTERN_METHOD(connectFTP:(RCTPromiseResolveBlock *)resolver rejecter:(RCTPromiseRejectBlock *)rejecter)
 
-RCT_EXTERN_METHOD(findFTPFlies:(NSString *)subPath recursive:(BOOL)recursive resolver:(RCTPromiseResolveBlock *)resolver rejecter:(RCTPromiseRejectBlock *)rejecter)
+RCT_EXTERN_METHOD(findFTPFlies:(NSString *)subPath resolver:(RCTPromiseResolveBlock *)resolver rejecter:(RCTPromiseRejectBlock *)rejecter)
 
-RCT_EXTERN_METHOD(downFTPFile:(NSString *)url locaUrl:(NSString *)locaUrl fileName:(NSString *)fileName overwrite:(BOOL)overwrite tag:(NSString *)tag resolver:(RCTPromiseResolveBlock *)resolver rejecter:(RCTPromiseRejectBlock *)rejecter)
+RCT_EXTERN_METHOD(downFTPFile:(NSString *)url locaUrl:(NSString *)locaUrl fileName:(NSString *)fileName tag:(NSString *)tag resolver:(RCTPromiseResolveBlock *)resolver rejecter:(RCTPromiseRejectBlock *)rejecter)
 
-RCT_EXTERN_METHOD(uploadFTPFile:(NSString *)path locaUrl:(NSString *)locaUrl fileName:(NSString *)fileName tag:(NSString *)tag resolver:(RCTPromiseResolveBlock *)resolver rejecter:(RCTPromiseRejectBlock *)rejecter)
+RCT_EXTERN_METHOD(uploadFTPFile:(NSString *)path locaUrl:(NSString *)locaUrl fileName:(NSString *)fileName overwrite:(BOOL)overwrite tag:(NSString *)tag resolver:(RCTPromiseResolveBlock *)resolver rejecter:(RCTPromiseRejectBlock *)rejecter)
 
 RCT_EXTERN_METHOD(ftpPause:(NSString *)tag resolver:(RCTPromiseResolveBlock *)resolver rejecter:(RCTPromiseRejectBlock *)rejecter)
 

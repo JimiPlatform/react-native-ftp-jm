@@ -34,5 +34,16 @@ class JMFTPSyncFileTools: NSObject {
         }
         return JSONString
     }
-    
+    class func createDicFile(filePath:String)->Bool {
+        let fileManager = FileManager.default
+        if fileManager.fileExists(atPath: filePath) {
+            return true
+        }
+        do{
+            try fileManager.createDirectory(atPath: filePath, withIntermediateDirectories: true, attributes: nil)
+            return true
+        }catch{
+            return false
+        }
+    }
 }
