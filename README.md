@@ -33,7 +33,6 @@ rejecter | RCTPromiseRejectBlock | 是 | 失败回调（RN专属回调）
 | - | :-: | :-: | - |
 data | String | 是 | 发送数据
 tag | Int | 是 | 标签
-timeout | Int | 是 | 发送延时
 resolver | RCTPromiseResolveBlock | 是 | 成功回调（RN专属回调）
 rejecter | RCTPromiseRejectBlock | 是 | 失败回调（RN专属回调）
 ## 关闭链接
