@@ -33,7 +33,6 @@ rejecter | RCTPromiseRejectBlock | 是 | 失败回调（RN专属回调）
 | - | :-: | :-: | - |
 data | String | 是 | 发送数据
 tag | Int | 是 | 标签
-timeout | Int | 是 | 发送延时
 resolver | RCTPromiseResolveBlock | 是 | 成功回调（RN专属回调）
 rejecter | RCTPromiseRejectBlock | 是 | 失败回调（RN专属回调）
 ## 关闭链接
@@ -57,6 +56,7 @@ rejecter | RCTPromiseRejectBlock | 是 | 失败回调（RN专属回调）
 | - | :-: | :-: | - |
 code | Int | 是 | 发送相应标识code码
 data | string | 否 | 当接受到服务端数据时，data内将包含服务端数据json字符串
+
 `{"code":600,"data":""}`
 
 - code码:
@@ -104,8 +104,7 @@ rejecter | RCTPromiseRejectBlock | 是 | 失败回调（RN专属回调）
 参数 | 类型 |  是否必须 | 说明  
 | - | :-: | :-: | - |
 subPath | string | 是 | 文件夹路径
-recursive | Bool | 是 | 是否搜索子目录的路径
-resolver | RCTPromiseResolveBlock | 是 | 成功回调（RN专属回调）body:[{"name":""}]body为json字符串
+resolver | RCTPromiseResolveBlock | 是 | 成功回调（RN专属回调）body:[{"fileName":"",fileSize:"","filePath":""]}]body为json字符串
 rejecter | RCTPromiseRejectBlock | 是 | 失败回调（RN专属回调）
 
 ## 下载ftp文件
@@ -198,7 +197,7 @@ rejecter | RCTPromiseRejectBlock | 是 | 失败回调（RN专属回调）
 path | string | 是 | 原始文件路径
 toPath | string | 是 | 将要移动的文件路径
 overwrite | Bool | 是 | 若带移动的文件路径上有文件是否覆盖
-resolver | RCTPromiseResolveBlock | 是 | 成功回调（RN专属回调）
+resolver | RCTPromiseResolveBlock | 是 | 成功回调（RN专属回调）body:{path:""} body为json字符串 path为文件在服务端路径
 rejecter | RCTPromiseRejectBlock | 是 | 失败回调（RN专属回调）
 
 ## 关闭FTP链接

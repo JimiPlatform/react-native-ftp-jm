@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AB2F00D12387B33E001D45BE /* JMFTPSyncFileTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2F00CB2387B33D001D45BE /* JMFTPSyncFileTools.swift */; };
-		AB2F00D22387B33E001D45BE /* JMUDPScoketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2F00CC2387B33D001D45BE /* JMUDPScoketManager.swift */; };
-		AB2F00D32387B33E001D45BE /* JMUDPScoketManagerBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = AB2F00CD2387B33D001D45BE /* JMUDPScoketManagerBridge.m */; };
-		AB2F00D42387B33E001D45BE /* JMFTPSyncFileManagerBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = AB2F00CE2387B33D001D45BE /* JMFTPSyncFileManagerBridge.m */; };
-		AB2F00D52387B33E001D45BE /* JMFTPDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2F00CF2387B33D001D45BE /* JMFTPDownloadManager.swift */; };
-		AB2F00D62387B33E001D45BE /* JMFTPSyncFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2F00D02387B33E001D45BE /* JMFTPSyncFileManager.swift */; };
+		ABAC82A4238E619400E1BEE8 /* JMFTPDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC829D238E619300E1BEE8 /* JMFTPDownloadManager.swift */; };
+		ABAC82A5238E619400E1BEE8 /* JMUDPScoketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC829E238E619300E1BEE8 /* JMUDPScoketManager.swift */; };
+		ABAC82A6238E619400E1BEE8 /* JMFTPSyncFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC829F238E619400E1BEE8 /* JMFTPSyncFileManager.swift */; };
+		ABAC82A7238E619400E1BEE8 /* JMFTPSyncFileTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC82A0238E619400E1BEE8 /* JMFTPSyncFileTools.swift */; };
+		ABAC82A8238E619400E1BEE8 /* JMUDPScoketManagerBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAC82A1238E619400E1BEE8 /* JMUDPScoketManagerBridge.m */; };
+		ABAC82A9238E619400E1BEE8 /* JMFTPUdataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC82A2238E619400E1BEE8 /* JMFTPUdataManager.swift */; };
+		ABAC82AA238E619400E1BEE8 /* JMFTPSyncFileManagerBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAC82A3238E619400E1BEE8 /* JMFTPSyncFileManagerBridge.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,12 +30,13 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libRNReactNativeFtpJm.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNReactNativeFtpJm.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB2F00CB2387B33D001D45BE /* JMFTPSyncFileTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JMFTPSyncFileTools.swift; sourceTree = "<group>"; };
-		AB2F00CC2387B33D001D45BE /* JMUDPScoketManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JMUDPScoketManager.swift; sourceTree = "<group>"; };
-		AB2F00CD2387B33D001D45BE /* JMUDPScoketManagerBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMUDPScoketManagerBridge.m; sourceTree = "<group>"; };
-		AB2F00CE2387B33D001D45BE /* JMFTPSyncFileManagerBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMFTPSyncFileManagerBridge.m; sourceTree = "<group>"; };
-		AB2F00CF2387B33D001D45BE /* JMFTPDownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JMFTPDownloadManager.swift; sourceTree = "<group>"; };
-		AB2F00D02387B33E001D45BE /* JMFTPSyncFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JMFTPSyncFileManager.swift; sourceTree = "<group>"; };
+		ABAC829D238E619300E1BEE8 /* JMFTPDownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JMFTPDownloadManager.swift; sourceTree = "<group>"; };
+		ABAC829E238E619300E1BEE8 /* JMUDPScoketManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JMUDPScoketManager.swift; sourceTree = "<group>"; };
+		ABAC829F238E619400E1BEE8 /* JMFTPSyncFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JMFTPSyncFileManager.swift; sourceTree = "<group>"; };
+		ABAC82A0238E619400E1BEE8 /* JMFTPSyncFileTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JMFTPSyncFileTools.swift; sourceTree = "<group>"; };
+		ABAC82A1238E619400E1BEE8 /* JMUDPScoketManagerBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMUDPScoketManagerBridge.m; sourceTree = "<group>"; };
+		ABAC82A2238E619400E1BEE8 /* JMFTPUdataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JMFTPUdataManager.swift; sourceTree = "<group>"; };
+		ABAC82A3238E619400E1BEE8 /* JMFTPSyncFileManagerBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMFTPSyncFileManagerBridge.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,12 +61,13 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-				AB2F00CF2387B33D001D45BE /* JMFTPDownloadManager.swift */,
-				AB2F00D02387B33E001D45BE /* JMFTPSyncFileManager.swift */,
-				AB2F00CE2387B33D001D45BE /* JMFTPSyncFileManagerBridge.m */,
-				AB2F00CB2387B33D001D45BE /* JMFTPSyncFileTools.swift */,
-				AB2F00CC2387B33D001D45BE /* JMUDPScoketManager.swift */,
-				AB2F00CD2387B33D001D45BE /* JMUDPScoketManagerBridge.m */,
+				ABAC829D238E619300E1BEE8 /* JMFTPDownloadManager.swift */,
+				ABAC829F238E619400E1BEE8 /* JMFTPSyncFileManager.swift */,
+				ABAC82A3238E619400E1BEE8 /* JMFTPSyncFileManagerBridge.m */,
+				ABAC82A0238E619400E1BEE8 /* JMFTPSyncFileTools.swift */,
+				ABAC82A2238E619400E1BEE8 /* JMFTPUdataManager.swift */,
+				ABAC829E238E619300E1BEE8 /* JMUDPScoketManager.swift */,
+				ABAC82A1238E619400E1BEE8 /* JMUDPScoketManagerBridge.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -127,12 +130,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB2F00D62387B33E001D45BE /* JMFTPSyncFileManager.swift in Sources */,
-				AB2F00D52387B33E001D45BE /* JMFTPDownloadManager.swift in Sources */,
-				AB2F00D12387B33E001D45BE /* JMFTPSyncFileTools.swift in Sources */,
-				AB2F00D42387B33E001D45BE /* JMFTPSyncFileManagerBridge.m in Sources */,
-				AB2F00D22387B33E001D45BE /* JMUDPScoketManager.swift in Sources */,
-				AB2F00D32387B33E001D45BE /* JMUDPScoketManagerBridge.m in Sources */,
+				ABAC82A6238E619400E1BEE8 /* JMFTPSyncFileManager.swift in Sources */,
+				ABAC82A9238E619400E1BEE8 /* JMFTPUdataManager.swift in Sources */,
+				ABAC82A4238E619400E1BEE8 /* JMFTPDownloadManager.swift in Sources */,
+				ABAC82A8238E619400E1BEE8 /* JMUDPScoketManagerBridge.m in Sources */,
+				ABAC82A7238E619400E1BEE8 /* JMFTPSyncFileTools.swift in Sources */,
+				ABAC82AA238E619400E1BEE8 /* JMFTPSyncFileManagerBridge.m in Sources */,
+				ABAC82A5238E619400E1BEE8 /* JMUDPScoketManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
