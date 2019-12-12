@@ -18,7 +18,6 @@ Pod::Spec.new do |s|
   s.dependency "React"
   s.frameworks = 'UIKit'
   s.frameworks = 'AVFoundation'
-  s.frameworks = 'CommonCrypto'
   s.dependency 'React'
   s.dependency 'FilesProvider', '0.26.0'
   s.dependency 'CocoaAsyncSocket', '7.6.3'

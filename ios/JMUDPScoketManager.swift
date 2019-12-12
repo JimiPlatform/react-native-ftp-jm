@@ -59,31 +59,6 @@ class JMUDPScoketManager: RCTEventEmitter {
             self.sendEvent(withName: onRNUDPSocketCallback, body: jsonStr)
         }
     }
-        ///   - appKey: appKey  测试用：449A7D0E9C1911E7BEDB00219B9A2EF3
-    ///   - secret: secret  测试用：695c1a459c1911e7bedb00219b9a2ef3
-    ///   - token: 服务器登录Token，测试用：2FCB70C6A1EE00CF688F5E9C54C3D502
-    @objc(openWifi:rejecter:)
-    func openWifi(resolver:@escaping RCTPromiseResolveBlock,
-                  rejecter:@escaping RCTPromiseRejectBlock) {
-            let parameters = NSMutableDictionary.init(dictionary: [
-                "method":"jimi.smarthome.device.custom.instruct.send",
-                "imei":"357730090015752",
-                "instruct":"WIFI,ON",
-                "accessToken": "2FCB70C6A1EE00CF688F5E9C54C3D502",
-                "timestamp": Date.timestamp,
-                "app_key": "449A7D0E9C1911E7BEDB00219B9A2EF3"
-                ])
-            parameters["sign"] = ParamsEncryption.signToParams(parameters as! [String : Any], secret: "695c1a459c1911e7bedb00219b9a2ef3")
-
-            FTPSyncFileTools.openDeviceWIFI(url: "http://smarthome.jimicloud.com/route/app", parameters: parameters as! [String : Any], success: {(msg) in
-                resolver(nil)
-      
-            }) {(msg) in
-                rejecter("24214",msg,nil)
-
-            }
-    }
-
     //MARK:配置scoket参数
     @objc(configUDPSocket:port:timeout:resolver:rejecter:)
     func configUDPSocket(host:String,
