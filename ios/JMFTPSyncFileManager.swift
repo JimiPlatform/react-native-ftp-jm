@@ -337,29 +337,29 @@ class JMFTPSyncFileManager: RCTEventEmitter {
     }
 
 }
-extension JMFTPSyncFileManager:JMFTPDownloadManagerDelegate{
-    func ftpManagerDownloadProgressDidChange(process: Double, tag: String) {
-        guard var model = self.realFtpDic[tag] else{return}
-        model.progress = process
-        self.realFtpDic[tag] = model
-    }
-
-    func ftpDownloadStatus(destinationURL: String?, errorMsg: String?, tag: String) {
-        guard let model = realFtpDic[tag] else {
-            return
-        }
-        if let errorMessage = errorMsg {
-            model.rejecter("804",errorMessage,nil)
-        }
-        model.resolver(JMFTPSyncFileTools.getJSONStringFrom(["tag":tag,"destinationURL":destinationURL ?? ""]))
-        realFtpDic.removeValue(forKey: tag)
-        if realFtpDic.count == 0 {
-            self.cencelTimer()
-        }
-    }
-
-    
-}
+//extension JMFTPSyncFileManager:JMFTPDownloadManagerDelegate{
+//    func ftpManagerDownloadProgressDidChange(process: Double, tag: String) {
+//        guard var model = self.realFtpDic[tag] else{return}
+//        model.progress = process
+//        self.realFtpDic[tag] = model
+//    }
+//
+//    func ftpDownloadStatus(destinationURL: String?, errorMsg: String?, tag: String) {
+//        guard let model = realFtpDic[tag] else {
+//            return
+//        }
+//        if let errorMessage = errorMsg {
+//            model.rejecter("804",errorMessage,nil)
+//        }
+//        model.resolver(JMFTPSyncFileTools.getJSONStringFrom(["tag":tag,"destinationURL":destinationURL ?? ""]))
+//        realFtpDic.removeValue(forKey: tag)
+//        if realFtpDic.count == 0 {
+//            self.cencelTimer()
+//        }
+//    }
+//
+//    
+//}
 extension JMFTPSyncFileManager{
     func startTimer()  {
         if timer != nil {

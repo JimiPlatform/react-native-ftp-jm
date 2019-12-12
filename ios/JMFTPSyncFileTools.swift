@@ -15,7 +15,6 @@
 
 
 import UIKit
-import AFNetworking
 import SystemConfiguration.CaptiveNetwork
 import AVFoundation
 
