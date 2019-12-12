@@ -10,9 +10,11 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.google.gson.Gson;
+import com.jimi.ftpapi.listener.JMBaseListener;
 import com.jimi.ftpapi.model.ToJSBean;
 import com.jimi.ftpapi.model.ToJSData;
 import com.jimi.ftpapi.model.socket.ErrorToJsBean;
+import com.jimi.ftpapi.udp.JMUDPSoket;
 import com.jimi.ftpapi.utils.MyGson;
 
 import java.net.DatagramPacket;
@@ -24,12 +26,10 @@ import java.util.Map;
 
 
 public class JMUDPScoketManager extends ReactContextBaseJavaModule{
-    private DatagramSocket socket;
     private ReactContext mReactContext;
     private static final String kRNJMUDPScoketManager = "kRNJMUDPScoketManager";
-    private InetAddress serverAddress = null;
-    private int port;
-    private boolean isReceive=true;
+    private JMUDPSoket jmudpSoket=new JMUDPSoket();
+
 
     public JMUDPScoketManager(ReactApplicationContext reactContext) {
         super(reactContext);
@@ -76,80 +76,69 @@ public class JMUDPScoketManager extends ReactContextBaseJavaModule{
 
         @Override
         public void onHostDestroy() {
-            isReceive=false;
+            jmudpSoket.destroy();
         }
     };
 
     @ReactMethod
     public void configUDPSocket(String host,int port, int timeout,Promise promise){
-        try {
-            socket = new DatagramSocket();
-            socket.setBroadcast(true);
-            serverAddress = InetAddress.getByName(host);
-            this.port=port;
-            promise.resolve(null);
-            Log.d(kRNJMUDPScoketManager, "configUDPSocket: host:"+host+" port:"+port+" timeout"+timeout);
-        } catch (SocketException e) {
-            promise.reject("601",ErrorToJsBean.getInstance().getErrorJson("601","链接失败,设备通信故障"));
-            e.printStackTrace();
-        } catch (Exception e) {
-            promise.reject("601",ErrorToJsBean.getInstance().getErrorJson("601","链接失败,IO异常!"));
-            e.printStackTrace();
-        }
 
-        new Thread(new Runnable() {
+        jmudpSoket.configUDPSocket(host, port, timeout, new JMBaseListener() {
             @Override
-            public void run() {
-                while (isReceive){
-                    try{
-                        byte[] b = new byte[1024];
-                        DatagramPacket vPacket = new DatagramPacket(b, b.length);
-                        socket.setSoTimeout(timeout<=0?15:timeout);
-                        socket.receive(vPacket);
-                        String udpDate = new String(vPacket.getData(), 0, vPacket.getLength());
-                        sendEvent("listeningUDPScoketCellBack",udpDate);
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-
-                }
-
+            public void realTimeMessage(String key, String data) {
+                sendEvent(key,data);
             }
-        }).start();
 
+            @Override
+            public void onSuccess(String data) {
+                promise.resolve(data);
+            }
+
+            @Override
+            public void onFail(String code, String errorMsg) {
+                promise.reject(code,errorMsg);
+            }
+        });
     }
 
     @ReactMethod
-    public void send(String data,int tag,int timeout,Promise promise){
-        new Thread(new Runnable() {
+    public void send(String data,int tag,Promise promise){
+        jmudpSoket.send(data, tag, new JMBaseListener() {
             @Override
-            public void run() {
-                try{
-                    DatagramPacket datagramPacket = new DatagramPacket(data.getBytes(), data.length(), serverAddress, port);
-                    socket.send(datagramPacket);
-                    Log.d(kRNJMUDPScoketManager, "run: 发送消息成功"+data);
-                    promise.resolve(null);
-                }catch (Exception e){
-                    e.printStackTrace();
-                    promise.reject("604",ErrorToJsBean.getInstance().getErrorJson("604","发送失败"));
-                }
+            public void realTimeMessage(String key, String data) {
+
             }
-        }).start();
+
+            @Override
+            public void onSuccess(String data) {
+                promise.resolve(data);
+            }
+
+            @Override
+            public void onFail(String code, String errorMsg) {
+                promise.reject(code,errorMsg);
+            }
+        });
     }
 
     @ReactMethod
     public void closeSocket(Promise promise){
-        isReceive=false;
-        try{
-            if(socket!=null){
-                socket.disconnect();
-                socket.close();
-            }
-            socket=null;
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        promise.resolve(null);
+       jmudpSoket.closeSocket(new JMBaseListener() {
+           @Override
+           public void realTimeMessage(String key, String data) {
+
+           }
+
+           @Override
+           public void onSuccess(String data) {
+               promise.resolve(data);
+           }
+
+           @Override
+           public void onFail(String code, String errorMsg) {
+               promise.reject(code,errorMsg);
+           }
+       });
     }
 
 }

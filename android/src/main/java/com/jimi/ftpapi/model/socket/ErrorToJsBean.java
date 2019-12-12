@@ -1,5 +1,7 @@
 package com.jimi.ftpapi.model.socket;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 
 public class ErrorToJsBean {
@@ -20,6 +22,8 @@ public class ErrorToJsBean {
     public String getErrorJson(String code,String data){
         this.data=data;
         this.code=code;
-        return gson.toJson(errorToJsBean);
+        String msg=gson.toJson(errorToJsBean);
+        Log.d("errorMsg", "getErrorJson: "+msg);
+        return msg;
     }
 }
