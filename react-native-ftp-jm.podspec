@@ -20,9 +20,7 @@ Pod::Spec.new do |s|
   s.frameworks = 'AVFoundation'
   s.frameworks = 'CommonCrypto'
   s.dependency 'React'
-  s.dependency 'Alamofire', '4.9.0'
   s.dependency 'FilesProvider', '0.26.0'
-  s.dependency 'AFNetworking', '3.2.1'
   s.dependency 'CocoaAsyncSocket', '7.6.3'
 
   #s.dependency "others"
