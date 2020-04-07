@@ -153,7 +153,7 @@ extension JMUDPScoketManager: GCDAsyncUdpSocketDelegate{
     //接受到数据
     func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
         let str = String.init(data: address, encoding: String.Encoding.utf8)
-        print("dpSocket(_ sock adress = \(str) filterContext = \(filterContext)")
+        print("dpSocket(_ sock adress = \(str) filterContext = \(filterContext) data = \(try? JSONSerialization.jsonObject(with: data, options: .mutableContainers))")
         if let dict = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) {
             sendEvent(603,dict)
         }

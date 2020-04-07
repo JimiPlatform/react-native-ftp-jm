@@ -182,7 +182,7 @@ class JMFTPSyncFileManager: RCTEventEmitter {
         let data = ftpManager.contents(of: server)
         guard let dataArr = data as? [[String: Any]] else {
             debugPrint("错误：ftpManager?.contents(of: server)", data ?? NSObject())
-            rejecter("803","获取文件错误",nil)
+            resolver(JMFTPSyncFileTools.getJSONStringFrom([Any]()));
             return
         }
         print("+++++++++ dataArr \(dataArr.description)")
