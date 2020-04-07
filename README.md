@@ -221,6 +221,8 @@ rejecter | RCTPromiseRejectBlock | 是 | 失败回调（RN专属回调）
 path | Int | 是 | 下载或者上传连接
 progress | Double | 是 | 当前进度
 tag | string | 是 | 标签
+
+`{"data":{"path":"var/","progress":0.33,tag:"1"}}`
 ## 错误码
 code码 | 说明 |  
 | :-: | :-: |

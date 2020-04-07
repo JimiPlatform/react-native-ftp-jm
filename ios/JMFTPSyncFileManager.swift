@@ -105,7 +105,8 @@ class JMFTPSyncFileManager: RCTEventEmitter {
         if (isHasListeners) {
             let param : [String:Any] = ["path":model.requetUrl,"tag":model.tag,"progress":model.progress]
             let jsonStr = JMFTPSyncFileTools.getJSONStringFrom(param)
-            self.sendEvent(withName: kRNFTPProgressCallback, body: jsonStr)
+            let dataStr = JMFTPSyncFileTools.getJSONStringFrom(["data":jsonStr])
+            self.sendEvent(withName: kRNFTPProgressCallback, body: dataStr)
         }
     }
     //MARK:配置ftp
