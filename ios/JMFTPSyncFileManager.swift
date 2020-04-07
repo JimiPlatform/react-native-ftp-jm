@@ -15,9 +15,9 @@
 import Foundation
 import React
 import FilesProvider
-
+import JMCurl
 struct JMRealDownUpdataFtpModel {
-//    var downManager: JMFTPDownloadManager = JMFTPDownloadManager()
+    var downManager: JMFTPDownloadManager = JMFTPDownloadManager()
     var resolver: RCTPromiseResolveBlock
     var rejecter: RCTPromiseRejectBlock
     var isDown : Bool
@@ -26,13 +26,26 @@ struct JMRealDownUpdataFtpModel {
     var requetUrl : String
     var tag : String
     func pause() {
-        manager.pause()
+        if isDown {
+            downManager.pause()
+        }else{
+            manager.pause()
+        }
+        
     }
     func resume()  {
-        manager.pause()
+        if isDown {
+            downManager.resume()
+        }else{
+            manager.resume()
+        }
     }
     func cancel()  {
-        manager.pause()
+        if isDown {
+            downManager.cancel()
+        }else{
+            manager.pause()
+        }
     }
 }
 @objc(JMFTPSyncFileManager)
@@ -52,11 +65,14 @@ class JMFTPSyncFileManager: RCTEventEmitter {
             }
         }
     }
-    let onRNFTPProgressCallback = "listeningFTPProgressCellBack"
+//    let kRNFTPProgressCallback = "listeningFTPProgressCallBack"
+        let kRNFTPProgressCallback = "kRNJMFTPSyncFileManager"
+
 
     var isHasListeners = false      //JS是否有监听事件
     
     var baseUrl : String?
+    var port : Int?
     var ftpMode : JMFTPMode?
     var account : String?
     var password : String?
@@ -79,17 +95,17 @@ class JMFTPSyncFileManager: RCTEventEmitter {
         isHasListeners = false
     }
     override func supportedEvents() -> [String]! {
-        return [onRNFTPProgressCallback]
+        return [kRNFTPProgressCallback]
     }
     
     override func constantsToExport() -> [AnyHashable : Any]! {
-        return [onRNFTPProgressCallback: onRNFTPProgressCallback]
+        return ["kRNFTPProgressCallback": kRNFTPProgressCallback]
     }
     func sendEvent(_ model: JMRealDownUpdataFtpModel) -> Void {
         if (isHasListeners) {
             let param : [String:Any] = ["path":model.requetUrl,"tag":model.tag,"progress":model.progress]
             let jsonStr = JMFTPSyncFileTools.getJSONStringFrom(param)
-            self.sendEvent(withName: onRNFTPProgressCallback, body: jsonStr)
+            self.sendEvent(withName: kRNFTPProgressCallback, body: jsonStr)
         }
     }
     //MARK:配置ftp
@@ -101,17 +117,18 @@ class JMFTPSyncFileManager: RCTEventEmitter {
                            password:String,
                            resolver:@escaping RCTPromiseResolveBlock,
                            rejecter:@escaping RCTPromiseRejectBlock) {
-        guard let state = JMFTPMode(rawValue: "active") else {
+        guard let state = JMFTPMode(rawValue: mode) else {
             rejecter("-800","mode不正确",nil)
             return
         }
-        let portStr = port == 0 ? "" : (":" + String(port))
+        //            let portStr = port == 0 ? "" : (":" + String(port))
         if !baseUrl.contains("ftp://") {
-            self.baseUrl = "ftp://" + baseUrl + portStr
+            self.baseUrl = "ftp://" + baseUrl
         }else{
-            self.baseUrl =  baseUrl + portStr
+            self.baseUrl =  baseUrl
         }
-//        "ftp://192.168.43.1:10011"
+        //        "ftp://192.168.43.1:10011"
+        self.port = port
         self.ftpMode = state
         self.account = account
         self.password = password
@@ -123,12 +140,14 @@ class JMFTPSyncFileManager: RCTEventEmitter {
                     rejecter:@escaping RCTPromiseRejectBlock) {
         guard let baseUrl = self.baseUrl,
             let ftpMode = self.ftpMode,
+            let port = self.port,
             let account = self.account,
             let password = self.password else {
             rejecter("801","未配置ftp参数",nil)
             return
         }
-        guard let url = URL(string: baseUrl) else {
+        let portStr = port == 0 ? "" : (":" + String(port))
+        guard let url = URL(string: baseUrl + portStr) else {
             rejecter("801","baseUrl不正确",nil)
             return
         }
@@ -148,26 +167,42 @@ class JMFTPSyncFileManager: RCTEventEmitter {
     func findFTPFlies(subPath:String,
                       resolver:@escaping RCTPromiseResolveBlock,
                       rejecter:@escaping RCTPromiseRejectBlock)  {
-        guard let provider = ftpManager else {
-            rejecter("802","未进行连接操作",nil)
+        guard let baseUrl = self.baseUrl,
+            let account = self.account,
+            let port = self.port,
+            let password = self.password else {
+            rejecter("801","未配置ftp参数",nil)
             return
         }
-//        "/mnt/sdcard2/DVRMEDIA/CarRecorder/PHOTO/2019_02_23"
-        DispatchQueue.main.async {
-         provider.contentsOfDirectory(path: subPath) { (FileObjects, error) in
-               guard error == nil else{
-                 debugPrint("provider.searchFile = \(error.debugDescription)")
-                       rejecter("803","获取文件错误",error!)
-                       return
-             }
-             var files = [[String:String]]()
-             for obj in FileObjects{
-                files.append(["fileName":obj.name,"fileSize":String(obj.size),"filePath":obj.path])
-             }
-             print("files = \(files.debugDescription)")
-             resolver(JMFTPSyncFileTools.getJSONStringFrom(files))
-         }
+        let testUrl = baseUrl + subPath
+        let server = FMServer(destination: testUrl, username: account, password: password)
+        server?.port = Int32(port)
+        let ftpManager = FTPManager()
+        let data = ftpManager.contents(of: server)
+        guard let dataArr = data as? [[String: Any]] else {
+            debugPrint("错误：ftpManager?.contents(of: server)", data ?? NSObject())
+            rejecter("803","获取文件错误",nil)
+            return
         }
+        print("+++++++++ dataArr \(dataArr.description)")
+        var files = [[String: Any]]()
+        for dic in dataArr {
+            guard let name = dic["kCFFTPResourceName"] as? String,
+                let size = dic["kCFFTPResourceSize"] as? Int,
+                let type = dic["kCFFTPResourceType"] as? Int else {
+                rejecter("803","获取文件错误",nil)
+                return
+            }
+            var filePath = ""
+            if subPath.last == "/" {
+                filePath = subPath + "\(name)"
+            }else{
+                filePath = subPath + "/\(name)"
+            }
+            files.append(["fileName":name,"fileSize":size,"filePath":filePath,"fileType":type == 4 ? 1 : 0])
+        }
+        print("files = \(files.debugDescription)")
+        resolver(JMFTPSyncFileTools.getJSONStringFrom(files))
     }
     //MARK:下载ftp文件
     @objc(downFTPFile:locaUrl:fileName:tag:resolver:rejecter:)
@@ -177,49 +212,20 @@ class JMFTPSyncFileManager: RCTEventEmitter {
                      tag:String,
                      resolver:@escaping RCTPromiseResolveBlock,
                      rejecter:@escaping RCTPromiseRejectBlock) {
-        var locaUrlStr = ""
-        var downfileName = fileName
-        if locaUrl.last != "/" {
-            var arr = locaUrl.components(separatedBy: "/")
-            if let ss = arr.last {
-                if ss.contains(".") {
-                    downfileName = arr.removeLast()
-                    locaUrlStr = arr.joined(separator: "/") + "/"
-                }else{
-                    locaUrlStr = locaUrl + "/"
-                }
-            }else{
-                rejecter("802","未进行连接操作",nil)
-            }
-        }else{
-            locaUrlStr = locaUrl
-        }
-        
-        guard let provider = ftpManager,
-            JMFTPSyncFileTools.createDicFile(filePath: locaUrlStr) else {
-            rejecter("802","未进行连接操作",nil)
+
+        guard let baseUrl = self.baseUrl,
+            let account = self.account,
+            let port = self.port,
+            let password = self.password else {
+            rejecter("801","未配置ftp参数",nil)
             return
         }
-//        "/mnt/sdcard2/DVRMEDIA/CarRecorder/PHOTO/2019_02_23/2019_02_23_14_28_10.jpg"
-//        FileHandleManager.getSmallAppCache() + "/JMSmallApp/fs4324vv/gsdgs/4324.jpg"
-        startTimer()//开启计时器
-        let prossess = provider.copyItem(path: url, toLocalURL: URL(fileURLWithPath: locaUrlStr + downfileName))  { [weak self](error) in
-            if error == nil {
-                resolver(JMFTPSyncFileTools.getJSONStringFrom(["tag":tag]))
-            }else{
-                print("copyItem(path error = \(error.debugDescription)")
-                rejecter("804","下载失败",error)
-            }
-            self?.realFtpDic.removeValue(forKey: tag)
-            if self?.realFtpDic.count == 0 {
-                self?.cencelTimer()
-            }
-        }
-        guard let pro =  prossess else{
-            rejecter("804","下载失败",nil)
-            return
-        }
-        realFtpDic[tag] = JMRealDownUpdataFtpModel( resolver: resolver, rejecter: rejecter, isDown: true, manager: pro, requetUrl: url, tag: tag)
+        let manager = JMFTPDownloadManager()
+        manager.delegate = self
+        manager.startDownload(urlStr: baseUrl + ":\(port)" + url, locaPath: locaUrl+"\(fileName)", tag: tag, account: account, password: password)
+        NSLog("下载开始+++++++++++")
+        realFtpDic[tag] = JMRealDownUpdataFtpModel(downManager: manager, resolver: resolver, rejecter: rejecter, isDown: true, progress: 0,  requetUrl: baseUrl + ":\(port)" + url, tag: tag)
+
     }
     //MARK:暂停下载
     @objc(ftpPause:resolver:rejecter:)
@@ -296,17 +302,38 @@ class JMFTPSyncFileManager: RCTEventEmitter {
     func deleteFTPFile(path:String,
                        resolver:@escaping RCTPromiseResolveBlock,
                        rejecter:@escaping RCTPromiseRejectBlock)  {
-        guard let provider = ftpManager else {
-            rejecter("802","未进行连接操作",nil)
+        guard let baseUrl = self.baseUrl,
+            let account = self.account,
+            let port = self.port,
+            let password = self.password else {
+            rejecter("801","未配置ftp参数",nil)
             return
         }
-        provider.removeItem(path: path) { (error) in
-            if error != nil {
-                rejecter("806","删除失败",error)
-            }else{
-                resolver(nil)
-            }
+        var arr = path.components(separatedBy: "/")
+        let fileName = arr.last ?? ""
+        arr.removeLast()
+        let testUrl = baseUrl + arr.joined(separator: "/")
+        
+        let server = FMServer(destination: testUrl, username: account, password: password)
+        server?.port = Int32(port)
+        let ftpManager = FTPManager()
+        let isSuccess = ftpManager.deleteFileNamed(fileName, from: server)
+        if isSuccess {
+            resolver(nil)
+        }else{
+            rejecter("806","删除失败",nil)
         }
+//        guard let provider = ftpManager else {
+//            rejecter("802","未进行连接操作",nil)
+//            return
+//        }
+//        provider.removeItem(path: path) { (error) in
+//            if error != nil {
+//                rejecter("806","删除失败",error)
+//            }else{
+//                resolver(nil)
+//            }
+//        }
     }
     //MARK:移动文件
     @objc(moveFTPFile:toPath:overwrite:resolver:rejecter:)
@@ -337,29 +364,44 @@ class JMFTPSyncFileManager: RCTEventEmitter {
     }
 
 }
-//extension JMFTPSyncFileManager:JMFTPDownloadManagerDelegate{
-//    func ftpManagerDownloadProgressDidChange(process: Double, tag: String) {
-//        guard var model = self.realFtpDic[tag] else{return}
-//        model.progress = process
-//        self.realFtpDic[tag] = model
-//    }
-//
-//    func ftpDownloadStatus(destinationURL: String?, errorMsg: String?, tag: String) {
-//        guard let model = realFtpDic[tag] else {
-//            return
-//        }
-//        if let errorMessage = errorMsg {
-//            model.rejecter("804",errorMessage,nil)
-//        }
-//        model.resolver(JMFTPSyncFileTools.getJSONStringFrom(["tag":tag,"destinationURL":destinationURL ?? ""]))
-//        realFtpDic.removeValue(forKey: tag)
-//        if realFtpDic.count == 0 {
-//            self.cencelTimer()
-//        }
-//    }
-//
-//    
-//}
+extension JMFTPSyncFileManager:JMFTPDownloadManagerDelegate{
+    func ftpManagerDownloadProgressDidChange(process: Double, tag: String) {
+        if realFtpDic.keys.contains(tag),
+            var model = realFtpDic[tag]{
+            model.progress = process
+            self.sendEvent(model)
+        }
+    }
+//    2020-04-03 14:36:11.767487+ size 36M
+//    2020-04-03 14:36:51
+//    2020-04-03 14:33:33 size 35.1M
+//    2020-04-03 14:34:34.919911+0800
+//    2020-04-03 15:14:11
+//    2020-04-03 15:15:29.783576
+//    2020-04-03 15:16:39
+//    2020-04-03 15:31:01
+//    2020-04-03 15:33:29.3529 68M
+//    2020-04-03 15:34:41.720628
+//    2020-04-03 15:36:29.196892+0800 68.8M
+//    2020-04-03 15:37:06.886161+0800
+//    2020-04-03 16:59:43.171638 72.2M
+//    2020-04-03 17:01:34.770263
+//    2020-04-03 17:48:41.
+    func ftpDownloadStatus(destinationURL: String?, errorMsg: String?, tag: String) {
+        if realFtpDic.keys.contains(tag),
+            let model = realFtpDic[tag]{
+            if destinationURL != nil,
+            errorMsg == nil {
+                NSLog("下载结束+++++++++++")
+                model.resolver(JMFTPSyncFileTools.getJSONStringFrom(["tag":tag]))
+            }else{
+                model.rejecter("804",errorMsg,nil)
+            }
+            realFtpDic.removeValue(forKey: tag);
+        }
+    }
+}
+
 extension JMFTPSyncFileManager{
     func startTimer()  {
         if timer != nil {
@@ -380,6 +422,17 @@ extension JMFTPSyncFileManager{
         timer = nil
     }
 }
+//extension JMFTPSyncFileManager:FTPManagerDelegate{
+//    func ftpManagerUploadProgressDidChange(_ processInfo: [AnyHashable : Any]!) {
+//
+//    }
+//    func ftpManagerDownloadFailureReason(_ failureReason: FMStreamFailureReason) {
+//
+//    }
+//    func ftpManagerDownloadProgressDidChange(_ processInfo: [AnyHashable : Any]!) {
+//
+//    }
+//}
 extension JMFTPSyncFileManager:FileProviderDelegate{
     //操作成功后回调
     func fileproviderSucceed(_ fileProvider: FileProviderOperations, operation: FileOperationType) {

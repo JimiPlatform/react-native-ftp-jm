@@ -104,7 +104,7 @@ rejecter | RCTPromiseRejectBlock | 是 | 失败回调（RN专属回调）
 参数 | 类型 |  是否必须 | 说明  
 | - | :-: | :-: | - |
 subPath | string | 是 | 文件夹路径
-resolver | RCTPromiseResolveBlock | 是 | 成功回调（RN专属回调）body:[{"fileName":"",fileSize:"","filePath":""]}]body为json字符串
+resolver | RCTPromiseResolveBlock | 是 | 成功回调（RN专属回调）body:[{"fileName":"",fileSize:"","filePath":"","fileType":"folder"]}]body为json字符串，fileType：folder为文件夹，file为文件
 rejecter | RCTPromiseRejectBlock | 是 | 失败回调（RN专属回调）
 
 ## 下载ftp文件

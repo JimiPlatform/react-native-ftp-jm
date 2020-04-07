@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		ABAC82A5238E619400E1BEE8 /* JMUDPScoketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC829E238E619300E1BEE8 /* JMUDPScoketManager.swift */; };
-		ABAC82A6238E619400E1BEE8 /* JMFTPSyncFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC829F238E619400E1BEE8 /* JMFTPSyncFileManager.swift */; };
-		ABAC82A7238E619400E1BEE8 /* JMFTPSyncFileTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC82A0238E619400E1BEE8 /* JMFTPSyncFileTools.swift */; };
-		ABAC82A8238E619400E1BEE8 /* JMUDPScoketManagerBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAC82A1238E619400E1BEE8 /* JMUDPScoketManagerBridge.m */; };
-		ABAC82AA238E619400E1BEE8 /* JMFTPSyncFileManagerBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAC82A3238E619400E1BEE8 /* JMFTPSyncFileManagerBridge.m */; };
+		AB1E248F243C1F1E0041CF0A /* JMFTPSyncFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1E2488243C1F1D0041CF0A /* JMFTPSyncFileManager.swift */; };
+		AB1E2490243C1F1E0041CF0A /* JMFTPSyncFileTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1E2489243C1F1D0041CF0A /* JMFTPSyncFileTools.swift */; };
+		AB1E2491243C1F1E0041CF0A /* JMCurl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB1E248A243C1F1D0041CF0A /* JMCurl.framework */; };
+		AB1E2492243C1F1E0041CF0A /* JMFTPDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1E248B243C1F1D0041CF0A /* JMFTPDownloadManager.swift */; };
+		AB1E2493243C1F1E0041CF0A /* JMFTPSyncFileManagerBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1E248C243C1F1D0041CF0A /* JMFTPSyncFileManagerBridge.m */; };
+		AB1E2494243C1F1E0041CF0A /* JMUDPScoketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1E248D243C1F1D0041CF0A /* JMUDPScoketManager.swift */; };
+		AB1E2495243C1F1E0041CF0A /* JMUDPScoketManagerBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1E248E243C1F1E0041CF0A /* JMUDPScoketManagerBridge.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,11 +30,13 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libRNReactNativeFtpJm.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNReactNativeFtpJm.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		ABAC829E238E619300E1BEE8 /* JMUDPScoketManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JMUDPScoketManager.swift; sourceTree = "<group>"; };
-		ABAC829F238E619400E1BEE8 /* JMFTPSyncFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JMFTPSyncFileManager.swift; sourceTree = "<group>"; };
-		ABAC82A0238E619400E1BEE8 /* JMFTPSyncFileTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JMFTPSyncFileTools.swift; sourceTree = "<group>"; };
-		ABAC82A1238E619400E1BEE8 /* JMUDPScoketManagerBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMUDPScoketManagerBridge.m; sourceTree = "<group>"; };
-		ABAC82A3238E619400E1BEE8 /* JMFTPSyncFileManagerBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMFTPSyncFileManagerBridge.m; sourceTree = "<group>"; };
+		AB1E2488243C1F1D0041CF0A /* JMFTPSyncFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JMFTPSyncFileManager.swift; sourceTree = "<group>"; };
+		AB1E2489243C1F1D0041CF0A /* JMFTPSyncFileTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JMFTPSyncFileTools.swift; sourceTree = "<group>"; };
+		AB1E248A243C1F1D0041CF0A /* JMCurl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JMCurl.framework; sourceTree = "<group>"; };
+		AB1E248B243C1F1D0041CF0A /* JMFTPDownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JMFTPDownloadManager.swift; sourceTree = "<group>"; };
+		AB1E248C243C1F1D0041CF0A /* JMFTPSyncFileManagerBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMFTPSyncFileManagerBridge.m; sourceTree = "<group>"; };
+		AB1E248D243C1F1D0041CF0A /* JMUDPScoketManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JMUDPScoketManager.swift; sourceTree = "<group>"; };
+		AB1E248E243C1F1E0041CF0A /* JMUDPScoketManagerBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMUDPScoketManagerBridge.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB1E2491243C1F1E0041CF0A /* JMCurl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,11 +62,13 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-				ABAC829F238E619400E1BEE8 /* JMFTPSyncFileManager.swift */,
-				ABAC82A3238E619400E1BEE8 /* JMFTPSyncFileManagerBridge.m */,
-				ABAC82A0238E619400E1BEE8 /* JMFTPSyncFileTools.swift */,
-				ABAC829E238E619300E1BEE8 /* JMUDPScoketManager.swift */,
-				ABAC82A1238E619400E1BEE8 /* JMUDPScoketManagerBridge.m */,
+				AB1E248A243C1F1D0041CF0A /* JMCurl.framework */,
+				AB1E248B243C1F1D0041CF0A /* JMFTPDownloadManager.swift */,
+				AB1E2488243C1F1D0041CF0A /* JMFTPSyncFileManager.swift */,
+				AB1E248C243C1F1D0041CF0A /* JMFTPSyncFileManagerBridge.m */,
+				AB1E2489243C1F1D0041CF0A /* JMFTPSyncFileTools.swift */,
+				AB1E248D243C1F1D0041CF0A /* JMUDPScoketManager.swift */,
+				AB1E248E243C1F1E0041CF0A /* JMUDPScoketManagerBridge.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -124,11 +131,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABAC82A6238E619400E1BEE8 /* JMFTPSyncFileManager.swift in Sources */,
-				ABAC82A8238E619400E1BEE8 /* JMUDPScoketManagerBridge.m in Sources */,
-				ABAC82A7238E619400E1BEE8 /* JMFTPSyncFileTools.swift in Sources */,
-				ABAC82AA238E619400E1BEE8 /* JMFTPSyncFileManagerBridge.m in Sources */,
-				ABAC82A5238E619400E1BEE8 /* JMUDPScoketManager.swift in Sources */,
+				AB1E2490243C1F1E0041CF0A /* JMFTPSyncFileTools.swift in Sources */,
+				AB1E2493243C1F1E0041CF0A /* JMFTPSyncFileManagerBridge.m in Sources */,
+				AB1E2495243C1F1E0041CF0A /* JMUDPScoketManagerBridge.m in Sources */,
+				AB1E248F243C1F1E0041CF0A /* JMFTPSyncFileManager.swift in Sources */,
+				AB1E2492243C1F1E0041CF0A /* JMFTPDownloadManager.swift in Sources */,
+				AB1E2494243C1F1E0041CF0A /* JMUDPScoketManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +228,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -245,6 +257,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,

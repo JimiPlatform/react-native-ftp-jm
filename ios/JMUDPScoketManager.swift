@@ -18,7 +18,7 @@ import CocoaAsyncSocket
 @objc(JMUDPScoketManager)
 class JMUDPScoketManager: RCTEventEmitter {
     //发送回调结果给小程序方法名
-    let onRNUDPSocketCallback = "listeningUDPScoketCellBack"
+    let kRNJMUDPSocketManager = "listeningUDPScoketCellBack"
     var isHasListeners = false      //JS是否有监听事件
     var host : String?
     var port : UInt16?
@@ -42,11 +42,11 @@ class JMUDPScoketManager: RCTEventEmitter {
     }
     
     override func supportedEvents() -> [String]! {
-        return [onRNUDPSocketCallback]
+        return [kRNJMUDPSocketManager]
     }
     
     override func constantsToExport() -> [AnyHashable : Any]! {
-        return [onRNUDPSocketCallback: onRNUDPSocketCallback]
+        return ["kRNJMUDPSocketManager": kRNJMUDPSocketManager]
     }
     
     func sendEvent(_ code: Int, _ data: Any? = nil) -> Void {
@@ -56,7 +56,7 @@ class JMUDPScoketManager: RCTEventEmitter {
                 param["data"] = data!
             }
             let jsonStr = JMFTPSyncFileTools.getJSONStringFrom(param)
-            self.sendEvent(withName: onRNUDPSocketCallback, body: jsonStr)
+            self.sendEvent(withName: kRNJMUDPSocketManager, body: jsonStr)
         }
     }
     //MARK:配置scoket参数
