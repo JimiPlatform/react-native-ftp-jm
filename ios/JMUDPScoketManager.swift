@@ -53,7 +53,7 @@ class JMUDPScoketManager: RCTEventEmitter {
         if (isHasListeners) {
             var param : [String:Any] = ["code":code]
             if data != nil {
-                param["data"] = data!
+                param["data"] = JMFTPSyncFileTools.getJSONStringFrom(data!)
             }
             let jsonStr = JMFTPSyncFileTools.getJSONStringFrom(param)
             self.sendEvent(withName: kRNJMUDPSocketManager, body: jsonStr)
