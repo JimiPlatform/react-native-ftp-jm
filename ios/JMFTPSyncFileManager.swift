@@ -168,6 +168,10 @@ class JMFTPSyncFileManager: RCTEventEmitter {
     func findFTPFlies(subPath:String,
                       resolver:@escaping RCTPromiseResolveBlock,
                       rejecter:@escaping RCTPromiseRejectBlock)  {
+        if subPath.count == 0{
+             resolver(JMFTPSyncFileTools.getJSONStringFrom([Any]()));
+             return;
+         }
         guard let baseUrl = self.baseUrl,
             let account = self.account,
             let port = self.port,
