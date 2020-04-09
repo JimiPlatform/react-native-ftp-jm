@@ -362,6 +362,7 @@ class JMFTPSyncFileManager: RCTEventEmitter {
         self.cencelTimer()
         ftpManager?.delegate = nil
         ftpManager = nil
+        resolver(nil)
     }
 
 }

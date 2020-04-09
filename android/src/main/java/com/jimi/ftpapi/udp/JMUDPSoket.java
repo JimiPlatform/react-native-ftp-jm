@@ -16,7 +16,7 @@ public class JMUDPSoket implements JMUDPSoketImp{
     private InetAddress serverAddress = null;
     private int port;
     private boolean isReceive=true;
-    private String TAG=this.getClass().getName();
+    private String TAG = "JMRNFTP";
     @Override
     public void configUDPSocket(String host, int port, int timeout, JMBaseListener jmBaseListener) {
         try {
@@ -43,7 +43,6 @@ public class JMUDPSoket implements JMUDPSoketImp{
             serverAddress = InetAddress.getByName(host);
             this.port=port;
             jmBaseListener.onSuccess(null);
-            Log.d(TAG, "configUDPSocket: host:"+host+" port:"+port+" timeout"+timeout);
         } catch (SocketException e) {
             jmBaseListener.onFail("601",ErrorToJsBean.getInstance().getErrorJson("601","链接失败,设备通信故障"));
             e.printStackTrace();
@@ -62,9 +61,10 @@ public class JMUDPSoket implements JMUDPSoketImp{
                         socket.setSoTimeout(timeout<5000?5000:timeout);
                         socket.receive(vPacket);
                         String udpDate = new String(vPacket.getData(), 0, vPacket.getLength());
-                        jmBaseListener.realTimeMessage(ListeningKye.listeningUDPScoketCellBack,udpDate);
-                    }catch (Exception e){
-                        e.printStackTrace();
+                        jmBaseListener.realTimeMessage(ListeningKye.listeningUDPSocketCellBack,udpDate);
+                        Log.e(TAG, "run: udp收到回复"+udpDate);
+                    }catch (Exception e) {
+//                        e.printStackTrace();
                     }
 
                 }
@@ -81,7 +81,7 @@ public class JMUDPSoket implements JMUDPSoketImp{
                 try{
                     DatagramPacket datagramPacket = new DatagramPacket(data.getBytes(), data.length(), serverAddress, port);
                     socket.send(datagramPacket);
-                    Log.d(TAG, "run: 发送消息成功"+data);
+                    Log.e(TAG, "run: 发送消息成功"+data);
                     jmBaseListener.onSuccess(null);
                 }catch (Exception e){
                     e.printStackTrace();

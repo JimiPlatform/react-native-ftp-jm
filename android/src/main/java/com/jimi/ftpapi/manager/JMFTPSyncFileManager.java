@@ -21,6 +21,7 @@ import java.util.Map;
 
 
 public class JMFTPSyncFileManager extends ReactContextBaseJavaModule {
+    private String TAG = "JMRNFTP";
     private ReactContext mReactContext;
     private static final String kRNJMFTPSyncFileManager = "kRNJMFTPSyncFileManager";
     private JMFtp jmFtp=new JMFtp();
@@ -53,7 +54,7 @@ public class JMFTPSyncFileManager extends ReactContextBaseJavaModule {
         } else {
             resultJson = new Gson().toJson(bean);
         }
-        Log.i(kRNJMFTPSyncFileManager, "JMUDPScoketManager send JS：" + resultJson);
+        Log.i(TAG, "JMFTPSyncFileManager sendEvent JS：" + resultJson);
         mReactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class).emit(kRNJMFTPSyncFileManager, resultJson);
     }
 
@@ -76,6 +77,8 @@ public class JMFTPSyncFileManager extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void configFtpSyncFile(String baseUrl, String mode, int port, String account, String password, Promise promise) {
+        Log.i(TAG, "configFtpSyncFile:" + baseUrl + " mode:" + mode + " port:" + port +
+                " account:" + account + " password:" + password);
         jmFtp.configFtpSyncFile(baseUrl, mode, port, account, password, new JMBaseListener() {
             @Override
             public void realTimeMessage(String key, String data) {
@@ -84,6 +87,7 @@ public class JMFTPSyncFileManager extends ReactContextBaseJavaModule {
 
             @Override
             public void onSuccess(String data) {
+
                 promise.resolve(data);
             }
 
@@ -96,6 +100,7 @@ public class JMFTPSyncFileManager extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void connectFTP(Promise promise) {
+        Log.i(TAG, "connectFTP");
         jmFtp.connectFTP(new JMBaseListener() {
             @Override
             public void realTimeMessage(String key, String data) {
@@ -116,6 +121,8 @@ public class JMFTPSyncFileManager extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void findFTPFlies(String subPath, Promise promise) {
+//        subPath = "/mnt/sdcard2/Remote/Photo";
+        Log.i(TAG, "findFTPFlies:" + subPath);
         jmFtp.findFTPFlies(subPath, new JMBaseListener() {
             @Override
             public void realTimeMessage(String key, String data) {
@@ -124,11 +131,13 @@ public class JMFTPSyncFileManager extends ReactContextBaseJavaModule {
 
             @Override
             public void onSuccess(String data) {
+                Log.i(TAG, "findFTPFlies-onSuccess:" + data);
                 promise.resolve(data);
             }
 
             @Override
             public void onFail(String code, String errorMsg) {
+                Log.i(TAG, "findFTPFlies-onFail:" + code + "," + errorMsg);
                 promise.reject(code,errorMsg);
             }
         });
@@ -137,6 +146,7 @@ public class JMFTPSyncFileManager extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void downFTPFile(String url, String locaUrl, String fileName, String tag, Promise promise) {
+        Log.i(TAG, "downFTPFile:" + url + " locaUrl:" + locaUrl + " fileName:" + fileName + " tag:" + tag);
         jmFtp.downFTPFile(url, locaUrl, fileName, tag, new JMBaseListener() {
             @Override
             public void realTimeMessage(String key, String data) {
@@ -272,6 +282,7 @@ public class JMFTPSyncFileManager extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void closeFTP(Promise promise) {
+        Log.i(TAG, "closeFTP:");
        jmFtp.closeFTP(new JMBaseListener() {
            @Override
            public void realTimeMessage(String key, String data) {
@@ -293,6 +304,7 @@ public class JMFTPSyncFileManager extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void ftpCancel(String tag, Promise promise) {
+        Log.i(TAG, "ftpCancel:" + tag);
         jmFtp.ftpCancel(tag, new JMBaseListener() {
             @Override
             public void realTimeMessage(String key, String data) {

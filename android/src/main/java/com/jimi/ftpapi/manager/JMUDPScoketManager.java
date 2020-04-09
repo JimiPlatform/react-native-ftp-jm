@@ -11,6 +11,7 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.google.gson.Gson;
 import com.jimi.ftpapi.listener.JMBaseListener;
+import com.jimi.ftpapi.listener.ListeningKye;
 import com.jimi.ftpapi.model.ToJSBean;
 import com.jimi.ftpapi.model.ToJSData;
 import com.jimi.ftpapi.model.socket.ErrorToJsBean;
@@ -26,8 +27,9 @@ import java.util.Map;
 
 
 public class JMUDPScoketManager extends ReactContextBaseJavaModule{
+    private String TAG = "JMRNFTP";
     private ReactContext mReactContext;
-    private static final String kRNJMUDPScoketManager = "kRNJMUDPScoketManager";
+    private static final String kRNJMUDPScoketManager = "kRNJMUDPSocketManager";
     private JMUDPSoket jmudpSoket=new JMUDPSoket();
 
 
@@ -59,7 +61,7 @@ public class JMUDPScoketManager extends ReactContextBaseJavaModule{
         } else {
             resultJson = new Gson().toJson(bean);
         }
-        Log.i(kRNJMUDPScoketManager, "JMUDPScoketManager send JS：" + resultJson);
+        Log.i(TAG, "JMUDPScoketManager sendEvent(" +methodName + ") JS：" + resultJson);
         mReactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class).emit(kRNJMUDPScoketManager, resultJson);
     }
 
@@ -81,8 +83,8 @@ public class JMUDPScoketManager extends ReactContextBaseJavaModule{
     };
 
     @ReactMethod
-    public void configUDPSocket(String host,int port, int timeout,Promise promise){
-
+    public void configUDPSocket(String host, int port, int timeout, Promise promise){
+        Log.i(TAG, "configUDPSocket host：" + host + " port:" + port + " timeout:" + timeout);
         jmudpSoket.configUDPSocket(host, port, timeout, new JMBaseListener() {
             @Override
             public void realTimeMessage(String key, String data) {
@@ -102,7 +104,8 @@ public class JMUDPScoketManager extends ReactContextBaseJavaModule{
     }
 
     @ReactMethod
-    public void send(String data,int tag,Promise promise){
+    public void send(String data, int tag, Promise promise){
+        Log.i(TAG, "send:" + data + " potagrt:" + tag);
         jmudpSoket.send(data, tag, new JMBaseListener() {
             @Override
             public void realTimeMessage(String key, String data) {
@@ -122,7 +125,8 @@ public class JMUDPScoketManager extends ReactContextBaseJavaModule{
     }
 
     @ReactMethod
-    public void closeSocket(Promise promise){
+    public void closeSocket(Promise promise) {
+        Log.i(TAG, "closeSocket");
        jmudpSoket.closeSocket(new JMBaseListener() {
            @Override
            public void realTimeMessage(String key, String data) {

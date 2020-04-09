@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class JMFtp implements JMFtpImp{
-    private String TAG=this.getClass().getName();
+    private String TAG = "JMRNFTP";
     private static final String temp="backups";
     private FTPClient pClient;
     private String baseUrl;
@@ -35,7 +35,7 @@ public class JMFtp implements JMFtpImp{
 
     @Override
     public void configFtpSyncFile(String baseUrl, String mode, int port, String account, String password, JMBaseListener jmBaseListener) {
-        Log.d(TAG, "配置: baseUrl:" + baseUrl + "\n mode" + mode + "\n port" + port + "\n account" + account + "\n password" + password);
+        Log.e(TAG, "配置: baseUrl:" + baseUrl + "\n mode " + mode + "\n port " + port + "\n account " + account + "\n password " + password);
 
         if (baseUrl == null || mode == null || port < 0 || account == null || password == null) {
             jmBaseListener.onFail("800", ErrorToJsBean.getInstance().getErrorJson("800", "请检查参数是否正确,请看文档"));
@@ -81,11 +81,11 @@ public class JMFtp implements JMFtpImp{
                         pClient.connect(baseUrl, port);
                         pClient.login(account, password);
                         pClient.setFileType(FTPClient.BINARY_FILE_TYPE);//很重要，不然下载的视频不完整
-                        Log.d(TAG, "FTP链接成功");
+                        Log.e(TAG, "FTP链接成功");
                         jmBaseListener.onSuccess(null);
                     } catch (Exception e) {
                         e.printStackTrace();
-                        Log.d(TAG, "FTP链接失败");
+                        Log.e(TAG, "FTP链接失败");
                         jmBaseListener.onFail("809", ErrorToJsBean.getInstance().getErrorJson("809", "FTP链接失败"));
                     }
 
@@ -109,23 +109,16 @@ public class JMFtp implements JMFtpImp{
             return;
         }
 
-        StringBuffer stringBuffer = new StringBuffer();
-
-        if (!subPath.endsWith("/")) {
-            subPath = subPath + "/";
-        }
-        stringBuffer.append(subPath);
-
-
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    changeWorkingDirectory(stringBuffer.toString());
+//                    changeWorkingDirectory(subPath);
 
-                    pClient.configure(new FTPClientConfig("com.jimi.ftpapi.utils.UnixFTPEntryParser"));
+//                    pClient.configure(new FTPClientConfig("com.jimi.ftpapi.utils.UnixFTPEntryParser"));
+//                    pClient.configure();
 
-                    FTPFile[] ftpFiles = pClient.listFiles(stringBuffer.toString());
+                    FTPFile[] ftpFiles = pClient.listFiles(subPath);
                     if (ftpFiles == null || ftpFiles.length <= 0) {
                         jmBaseListener.onSuccess("[]");
                         return;
@@ -137,7 +130,8 @@ public class JMFtp implements JMFtpImp{
                             JSONObject jsonObject = new JSONObject();
                             jsonObject.put("fileName", ftpFiles[index].getName());
                             jsonObject.put("fileSize", ftpFiles[index].getSize());
-                            jsonObject.put("filePath", stringBuffer.toString() + ftpFiles[index].getName());
+                            jsonObject.put("filePath", subPath + "/" + ftpFiles[index].getName());
+                            jsonObject.put("fileType", ftpFiles[index].getType());
                             jsonArray.put(jsonObject);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -241,17 +235,22 @@ public class JMFtp implements JMFtpImp{
         FileOutputStream out = new FileOutputStream(localFile, true);
         //把文件指针移动到 开始位置
         pClient.setRestartOffset(beginSize);
+        pClient.setBufferSize(1024*1024);
         InputStream in = pClient.retrieveFileStream(new String(url.getBytes("GBK"), "iso-8859-1"));
         byte[] bytes = new byte[1024];
         int c;
         double finishSize = 0;
         double finishPercent = 0;
+        long startTime = System.currentTimeMillis();
         while ((c = in.read(bytes)) != -1 && tagMap.get(tag).isRun) {
             out.write(bytes, 0, c);
             finishSize += c;
             Log.d(TAG, "下载大小"+finishSize);
+            Log.d(TAG, "总大小"+waitSize);
+            Log.d(TAG, "百分比"+finishSize/waitSize);
             if (finishSize >= waitSize) {
-                Log.d(TAG, "下载完成");
+                Log.d(TAG, "下载完成,下载大小MB："+finishSize/1024/1024);
+                Log.d(TAG, "下载所用时间 秒："+(System.currentTimeMillis()-startTime)/1000);
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put("path", locaUrl + fileName);
                 jsonObject.put("progress", 1);
@@ -661,7 +660,7 @@ public class JMFtp implements JMFtpImp{
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            Log.d(TAG, "空间路径"+pClient.printWorkingDirectory());
+            Log.d(TAG, "空间路径：" + pClient.printWorkingDirectory());
         }catch (Exception e){
             e.printStackTrace();
         }
