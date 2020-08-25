@@ -1,6 +1,10 @@
 {
   "name": "react-native-ftp-jm",
+<<<<<<< HEAD
   "version": "1.2.5",
+=======
+  "version": "1.2.3",
+>>>>>>> 4198c2ca63e7a26bed8cddaeb06534bc76a75c09
   "description": "通过FTP协议管理自由组件",
   "main": "index.js",
   "scripts": {
