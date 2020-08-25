@@ -1,0 +1,5 @@
+com.jimi.ftpapi
+id myTextView
+layout layout_marker
+layout layout_my_textview
+mipmap icon_gcoding
