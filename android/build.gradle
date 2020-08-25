@@ -55,11 +55,6 @@ signing {
 dependencies {
     compileOnly 'com.facebook.react:react-native:+'
     compileOnly 'commons-net:commons-net:3.6'
-<<<<<<< HEAD
     implementation 'com.google.code.gson:gson:2.8.5'
-=======
-    compileOnly project(':libWebengine')
->>>>>>> 4198c2ca63e7a26bed8cddaeb06534bc76a75c09
-
 }
 
