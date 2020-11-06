@@ -1,6 +1,0 @@
-module Pods_RNReactNativeFtpJm {
-  umbrella header "Pods-RNReactNativeFtpJm-umbrella.h"
-
-  export *
-  module * { export * }
-}
