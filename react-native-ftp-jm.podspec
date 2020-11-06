@@ -23,6 +23,3 @@ Pod::Spec.new do |s|
 
 end
 
-  
-#校验指令
-#pod lib lint react-native-ftp-jm.podspec --verbose --allow-warnings --use-libraries
