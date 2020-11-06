@@ -1,7 +1,7 @@
 //
 // ProjectName:  JMSmallAppEngine
 // FileName:     JMUDPScoketManager.swift
-// Description:  <#Description#>
+// Description:  Description
 //
 // Created by LiuLuJia on 2019/11/19.
 // COPYRIGHT. ShenZhen JiMi Technology Co., Ltd. 2018.

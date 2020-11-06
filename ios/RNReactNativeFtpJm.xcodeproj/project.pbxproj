@@ -14,6 +14,7 @@
 		AB1E2493243C1F1E0041CF0A /* JMFTPSyncFileManagerBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1E248C243C1F1D0041CF0A /* JMFTPSyncFileManagerBridge.m */; };
 		AB1E2494243C1F1E0041CF0A /* JMUDPScoketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1E248D243C1F1D0041CF0A /* JMUDPScoketManager.swift */; };
 		AB1E2495243C1F1E0041CF0A /* JMUDPScoketManagerBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1E248E243C1F1E0041CF0A /* JMUDPScoketManagerBridge.m */; };
+		D28AA6C16B397828F58F5E53 /* libPods-RNReactNativeFtpJm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D89AD42F467EC20F26992AA /* libPods-RNReactNativeFtpJm.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,6 +31,9 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libRNReactNativeFtpJm.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNReactNativeFtpJm.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D89AD42F467EC20F26992AA /* libPods-RNReactNativeFtpJm.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNReactNativeFtpJm.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FFADA15C80E62405FE8419C /* Pods-RNReactNativeFtpJm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNReactNativeFtpJm.release.xcconfig"; path = "Target Support Files/Pods-RNReactNativeFtpJm/Pods-RNReactNativeFtpJm.release.xcconfig"; sourceTree = "<group>"; };
+		A7A6292077770B814885A384 /* Pods-RNReactNativeFtpJm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNReactNativeFtpJm.debug.xcconfig"; path = "Target Support Files/Pods-RNReactNativeFtpJm/Pods-RNReactNativeFtpJm.debug.xcconfig"; sourceTree = "<group>"; };
 		AB1E2488243C1F1D0041CF0A /* JMFTPSyncFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JMFTPSyncFileManager.swift; sourceTree = "<group>"; };
 		AB1E2489243C1F1D0041CF0A /* JMFTPSyncFileTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JMFTPSyncFileTools.swift; sourceTree = "<group>"; };
 		AB1E248A243C1F1D0041CF0A /* JMCurl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JMCurl.framework; sourceTree = "<group>"; };
@@ -45,6 +49,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB1E2491243C1F1E0041CF0A /* JMCurl.framework in Frameworks */,
+				D28AA6C16B397828F58F5E53 /* libPods-RNReactNativeFtpJm.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +64,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		2F0B96FB58CB90858D9A32A5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4D89AD42F467EC20F26992AA /* libPods-RNReactNativeFtpJm.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
@@ -70,7 +83,19 @@
 				AB1E248D243C1F1D0041CF0A /* JMUDPScoketManager.swift */,
 				AB1E248E243C1F1E0041CF0A /* JMUDPScoketManagerBridge.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
+				DF7DB7C6A5E5EC37C5C4FF07 /* Pods */,
+				2F0B96FB58CB90858D9A32A5 /* Frameworks */,
 			);
+			sourceTree = "<group>";
+		};
+		DF7DB7C6A5E5EC37C5C4FF07 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A7A6292077770B814885A384 /* Pods-RNReactNativeFtpJm.debug.xcconfig */,
+				9FFADA15C80E62405FE8419C /* Pods-RNReactNativeFtpJm.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -80,6 +105,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RNReactNativeFtpJm" */;
 			buildPhases = (
+				367E01782E13315A0F632064 /* [CP] Check Pods Manifest.lock */,
 				58B511D71A9E6C8500147676 /* Sources */,
 				58B511D81A9E6C8500147676 /* Frameworks */,
 				58B511D91A9E6C8500147676 /* CopyFiles */,
@@ -125,6 +151,31 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		367E01782E13315A0F632064 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RNReactNativeFtpJm-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		58B511D71A9E6C8500147676 /* Sources */ = {
@@ -226,6 +277,7 @@
 		};
 		58B511F01A9E6C8500147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A7A6292077770B814885A384 /* Pods-RNReactNativeFtpJm.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -255,6 +307,7 @@
 		};
 		58B511F11A9E6C8500147676 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9FFADA15C80E62405FE8419C /* Pods-RNReactNativeFtpJm.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
