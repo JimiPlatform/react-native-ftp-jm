@@ -1,4 +1,0 @@
-int id myTextView 0x7f0c0001
-int layout layout_marker 0x7f0f0001
-int layout layout_my_textview 0x7f0f0002
-int mipmap icon_gcoding 0x7f110001

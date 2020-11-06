@@ -1,6 +1,0 @@
-module FilesProvider {
-  umbrella header "FilesProvider-umbrella.h"
-
-  export *
-  module * { export * }
-}
