@@ -18,11 +18,11 @@ Pod::Spec.new do |s|
   s.dependency "React"
   s.frameworks = 'UIKit'
   s.frameworks = 'AVFoundation'
-  s.dependency 'React'
   s.dependency 'FilesProvider', '0.26.0'
   s.dependency 'CocoaAsyncSocket', '7.6.3'
-  #s.dependency "others"
 
 end
 
   
+#校验指令
+#pod lib lint react-native-ftp-jm.podspec --verbose --allow-warnings --use-libraries
