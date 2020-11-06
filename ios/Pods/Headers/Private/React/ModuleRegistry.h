@@ -1,0 +1,1 @@
+../../../../../../react-native/ReactCommon/cxxreact/ModuleRegistry.h

@@ -1,0 +1,6 @@
+framework module JMCurl {
+  umbrella header "JMCurl.h"
+
+  export *
+  module * { export * }
+}

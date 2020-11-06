@@ -56,6 +56,7 @@ public class JMFtp implements JMFtpImp{
                 baseUrl = strUrl[0];
             }
         }
+
         this.baseUrl = baseUrl;
         this.mode = mode;
         this.port = port;
@@ -96,8 +97,6 @@ public class JMFtp implements JMFtpImp{
                             jmBaseListener.onSuccess(null);
                         }
 
-                        Log.e(TAG, "FTP链接成功");
-                        jmBaseListener.onSuccess(null);
                     } catch (Exception e) {
                         e.printStackTrace();
                         Log.e(TAG, "FTP链接失败");

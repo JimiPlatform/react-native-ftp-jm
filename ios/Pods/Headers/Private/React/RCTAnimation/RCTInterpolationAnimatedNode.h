@@ -1,0 +1,1 @@
+../../../../../../../react-native/Libraries/NativeAnimation/Nodes/RCTInterpolationAnimatedNode.h
