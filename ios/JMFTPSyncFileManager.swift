@@ -16,6 +16,7 @@ import Foundation
 import React
 import FilesProvider
 import JMCurl
+
 struct JMRealDownUpdataFtpModel {
     var downManager: JMFTPDownloadManager = JMFTPDownloadManager()
     var resolver: RCTPromiseResolveBlock
@@ -48,6 +49,7 @@ struct JMRealDownUpdataFtpModel {
         }
     }
 }
+
 @objc(JMFTPSyncFileManager)
 class JMFTPSyncFileManager: RCTEventEmitter {
     enum JMFTPMode : String {
