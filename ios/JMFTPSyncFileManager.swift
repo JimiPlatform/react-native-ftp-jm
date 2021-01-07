@@ -280,16 +280,16 @@ class JMFTPSyncFileManager: RCTEventEmitter {
             rejecter("802","未进行连接操作",nil)
             return
         }
-        guard let data = FileManager.default.contents(atPath: locaUrl) else {
-            rejecter("808","没有上传文件",nil)
-            return
-        }
+//        guard let data = FileManager.default.contents(atPath: locaUrl) else {
+//            rejecter("808","没有上传文件",nil)
+//            return
+//        }
         startTimer()
-        let progressManger = provider.writeContents(path: path, contents: data, atomically: false, overwrite: true) { [weak self](error) in
+        let progressManger = provider.writeContents(path: path, contents: nil, atomically: false, overwrite: overwrite) { [weak self](error) in
             guard let weakSelf = self else{return}
-            if error == nil{
+            if error == nil {
                 resolver(JMFTPSyncFileTools.getJSONStringFrom(["tag":tag]))
-            }else{
+            } else {
                 rejecter("808","上传失败",error)
             }
             weakSelf.realFtpDic.removeValue(forKey: tag)
@@ -297,8 +297,8 @@ class JMFTPSyncFileManager: RCTEventEmitter {
                 weakSelf.cencelTimer()
             }
         }
-        guard let pro =  progressManger else{
-            rejecter("808","上传失败",nil)
+        guard let pro =  progressManger else {
+            rejecter("808","无上传管理器",nil)
             return
         }
         realFtpDic[tag] = JMRealDownUpdataFtpModel.init( resolver: resolver, rejecter: rejecter, isDown: false, manager: pro, requetUrl: path, tag: tag)

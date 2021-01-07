@@ -8,7 +8,7 @@ target 'RNReactNativeFtpJm' do
   pod 'CocoaAsyncSocket', '~> 7.6.3'
   pod 'JMCurl', '~> 1.0.0'
 
-  pod 'React', :path => '../../react-native', :subspecs => [
+  pod 'React', :path => '../../rn-lib/node_modules/react-native', :subspecs => [
     'Core',
     'CxxBridge',
     'DevSupport', 
@@ -17,10 +17,10 @@ target 'RNReactNativeFtpJm' do
     'RCTWebSocket', 
     'RCTAnimation'
   ]
-  pod 'yoga', :path => '../../react-native/ReactCommon/yoga'
-  pod 'DoubleConversion', :podspec => '../../react-native/third-party-podspecs/DoubleConversion.podspec'
-  pod 'glog', :podspec => '../../react-native/third-party-podspecs/glog.podspec'
-  pod 'Folly', :podspec => '../../react-native/third-party-podspecs/Folly.podspec'
+  pod 'yoga', :path => '../../rn-lib/node_modules/react-native/ReactCommon/yoga'
+  pod 'DoubleConversion', :podspec => '../../rn-lib/node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
+  pod 'glog', :podspec => '../../rn-lib/node_modules/react-native/third-party-podspecs/glog.podspec'
+  pod 'Folly', :podspec => '../../rn-lib/node_modules/react-native/third-party-podspecs/Folly.podspec'
 
 end
 

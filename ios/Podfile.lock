@@ -53,19 +53,19 @@ PODS:
 
 DEPENDENCIES:
   - CocoaAsyncSocket (~> 7.6.3)
-  - DoubleConversion (from `../../react-native/third-party-podspecs/DoubleConversion.podspec`)
+  - DoubleConversion (from `../../rn-lib/node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FilesProvider (~> 0.26.0)
-  - Folly (from `../../react-native/third-party-podspecs/Folly.podspec`)
-  - glog (from `../../react-native/third-party-podspecs/glog.podspec`)
+  - Folly (from `../../rn-lib/node_modules/react-native/third-party-podspecs/Folly.podspec`)
+  - glog (from `../../rn-lib/node_modules/react-native/third-party-podspecs/glog.podspec`)
   - JMCurl (~> 1.0.0)
-  - React/Core (from `../../react-native`)
-  - React/CxxBridge (from `../../react-native`)
-  - React/DevSupport (from `../../react-native`)
-  - React/RCTAnimation (from `../../react-native`)
-  - React/RCTNetwork (from `../../react-native`)
-  - React/RCTText (from `../../react-native`)
-  - React/RCTWebSocket (from `../../react-native`)
-  - yoga (from `../../react-native/ReactCommon/yoga`)
+  - React/Core (from `../../rn-lib/node_modules/react-native`)
+  - React/CxxBridge (from `../../rn-lib/node_modules/react-native`)
+  - React/DevSupport (from `../../rn-lib/node_modules/react-native`)
+  - React/RCTAnimation (from `../../rn-lib/node_modules/react-native`)
+  - React/RCTNetwork (from `../../rn-lib/node_modules/react-native`)
+  - React/RCTText (from `../../rn-lib/node_modules/react-native`)
+  - React/RCTWebSocket (from `../../rn-lib/node_modules/react-native`)
+  - yoga (from `../../rn-lib/node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   trunk:
@@ -76,15 +76,15 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   DoubleConversion:
-    :podspec: "../../react-native/third-party-podspecs/DoubleConversion.podspec"
+    :podspec: "../../rn-lib/node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
   Folly:
-    :podspec: "../../react-native/third-party-podspecs/Folly.podspec"
+    :podspec: "../../rn-lib/node_modules/react-native/third-party-podspecs/Folly.podspec"
   glog:
-    :podspec: "../../react-native/third-party-podspecs/glog.podspec"
+    :podspec: "../../rn-lib/node_modules/react-native/third-party-podspecs/glog.podspec"
   React:
-    :path: "../../react-native"
+    :path: "../../rn-lib/node_modules/react-native"
   yoga:
-    :path: "../../react-native/ReactCommon/yoga"
+    :path: "../../rn-lib/node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
@@ -97,6 +97,6 @@ SPEC CHECKSUMS:
   React: f85504c211ebbb63cfa0512572e124b185a94de2
   yoga: 32d7ef1081951e9a35a4c72a7be797598b138a48
 
-PODFILE CHECKSUM: c3b64528e0c8f18550daeee5ee3178b4f1b1fe32
+PODFILE CHECKSUM: 371dd993e0b3de2db63ed638f6f6166fdd2a2e3a
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0
