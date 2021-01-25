@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "react-native-ftp-jm"
-  s.version      = "1.0.5"
+  s.version      = "1.0.6"
   s.summary      = "react-native-ftp-jm"
   s.description  = <<-DESC
                   react-native-ftp-jm
@@ -14,10 +14,9 @@ Pod::Spec.new do |s|
   s.source_files  = "ios/*.{h,m,swift}"
   s.requires_arc = true
   s.dependency "React"
-  s.dependency 'JMCurl', '~> 1.0.0'
   s.frameworks = 'UIKit'
   s.frameworks = 'AVFoundation'
-  s.dependency 'FilesProvider', '0.26.0'
+  s.dependency 'JMSmartFTPUtils', '1.0.2'
   s.dependency 'CocoaAsyncSocket', '7.6.3'
 
 end

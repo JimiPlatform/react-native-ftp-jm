@@ -1,6 +1,6 @@
 {
   "name": "react-native-ftp-jm",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "description": "通过FTP协议管理自由组件",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
   ],
   "author": {
     "name": "JimiPlatform",
-    "email": "522674616@qq.com"
+    "email": "lizhijian@jimilab.com"
   },
   "license": "MIT",
   "peerDependencies": {

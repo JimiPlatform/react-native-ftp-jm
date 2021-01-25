@@ -3,7 +3,7 @@
 // FileName:     FTPSyncFileTools.swift
 // Description:  <#Description#>
 //
-// Created by LiuLuJia on 2019/11/11.
+// Created by Jason on 2019/11/11.
 // COPYRIGHT. ShenZhen JiMi Technology Co., Ltd. 2018.
 // ALL RIGHTS RESERVED.
 //
@@ -33,6 +33,7 @@ class JMFTPSyncFileTools: NSObject {
         }
         return JSONString
     }
+    
     class func createDicFile(filePath:String)->Bool {
         let fileManager = FileManager.default
         if fileManager.fileExists(atPath: filePath) {

@@ -1,14 +1,13 @@
 PODS:
   - boost-for-react-native (1.63.0)
-  - CocoaAsyncSocket (7.6.4)
+  - CocoaAsyncSocket (7.6.5)
   - DoubleConversion (1.1.6)
-  - FilesProvider (0.26.0)
   - Folly (2018.10.22.00):
     - boost-for-react-native
     - DoubleConversion
     - glog
   - glog (0.3.5)
-  - JMCurl (1.0.0)
+  - JMSmartFTPUtils (1.0.2)
   - React/Core (0.58.6):
     - yoga (= 0.58.6.React)
   - React/CxxBridge (0.58.6):
@@ -52,12 +51,11 @@ PODS:
   - yoga (0.58.6.React)
 
 DEPENDENCIES:
-  - CocoaAsyncSocket (~> 7.6.3)
+  - CocoaAsyncSocket (~> 7.6.5)
   - DoubleConversion (from `../../rn-lib/node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
-  - FilesProvider (~> 0.26.0)
   - Folly (from `../../rn-lib/node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../../rn-lib/node_modules/react-native/third-party-podspecs/glog.podspec`)
-  - JMCurl (~> 1.0.0)
+  - JMSmartFTPUtils (= 1.0.2)
   - React/Core (from `../../rn-lib/node_modules/react-native`)
   - React/CxxBridge (from `../../rn-lib/node_modules/react-native`)
   - React/DevSupport (from `../../rn-lib/node_modules/react-native`)
@@ -71,8 +69,7 @@ SPEC REPOS:
   trunk:
     - boost-for-react-native
     - CocoaAsyncSocket
-    - FilesProvider
-    - JMCurl
+    - JMSmartFTPUtils
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -88,15 +85,14 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
-  CocoaAsyncSocket: 694058e7c0ed05a9e217d1b3c7ded962f4180845
+  CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: bb338842f62ab1d708ceb63ec3d999f0f3d98ecd
-  FilesProvider: 2a8ae17d8b9c23a6feadb1308ee638fa31d21065
   Folly: de497beb10f102453a1afa9edbf8cf8a251890de
   glog: aefd1eb5dda2ab95ba0938556f34b98e2da3a60d
-  JMCurl: 1859017037dd79e0afa3de2d59c6b8248a701bdc
+  JMSmartFTPUtils: be1e757c9faed0db3a768ad90ba34485cf09ae68
   React: f85504c211ebbb63cfa0512572e124b185a94de2
   yoga: 32d7ef1081951e9a35a4c72a7be797598b138a48
 
-PODFILE CHECKSUM: 371dd993e0b3de2db63ed638f6f6166fdd2a2e3a
+PODFILE CHECKSUM: e663b6755747abcbde7ec2db7d0aa98b1ea8bdc3
 
 COCOAPODS: 1.10.0

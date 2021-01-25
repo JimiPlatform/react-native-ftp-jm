@@ -3,7 +3,7 @@
 // FileName:     JMUDPScoketManager.swift
 // Description:  Description
 //
-// Created by LiuLuJia on 2019/11/19.
+// Created by Jason on 2019/11/19.
 // COPYRIGHT. ShenZhen JiMi Technology Co., Ltd. 2018.
 // ALL RIGHTS RESERVED.
 //
@@ -15,6 +15,7 @@
 import Foundation
 import React
 import CocoaAsyncSocket
+
 @objc(JMUDPScoketManager)
 class JMUDPScoketManager: RCTEventEmitter {
     //发送回调结果给小程序方法名
