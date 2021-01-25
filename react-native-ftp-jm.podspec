@@ -14,10 +14,8 @@ Pod::Spec.new do |s|
   s.source_files  = "ios/*.{h,m,swift}"
   s.requires_arc = true
   s.dependency "React"
-  s.frameworks = 'UIKit'
-  s.frameworks = 'AVFoundation'
   s.dependency 'JMSmartFTPUtils', '1.0.2'
-  s.dependency 'CocoaAsyncSocket', '7.6.3'
+  s.dependency 'CocoaAsyncSocket'
 
 end
 

@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Image, Text, View, Dimensions, Button, TouchableOpacity, NativeModules, NativeEventEmitter } from 'react-native';
-import { MapView, MapTypes, Geolocation, Overlay, InfoWindow } from 'react-native-baidu-map-jm';
-import MapSearch from 'react-native-baidu-map-jm/js/MapSearch';
 const { height, width } = Dimensions.get('window');
-const {
-    BaiduLocationModule
-} = NativeModules;
 
-export default class App1 extends Component<Props> {
+export default class AppMain extends Component<Props> {
     state = {
         center: {
             latitude: 22.5801910000,

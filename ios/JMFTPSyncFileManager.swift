@@ -157,7 +157,7 @@ class JMFTPSyncFileManager: RCTEventEmitter {
         }
         let ftpClient = JMFTPClient.init(userInfo: userInfo)
         ftpClient.delegate = self
-//        ftpClient.tag = Int(tag)
+        ftpClient.tag = Int(tag) ?? 0
         
         realFtpDic[tag] = JMRealDownUpdataFtpModel(ftpClient: ftpClient, resolver: resolver, rejecter: rejecter, isDown: true, progress: 0,  requetUrl: url, tag: tag)
         ftpClient.downloadFile(withRemotePath: url, localDir: locaUrl, localFileName: fileName)
@@ -216,7 +216,7 @@ class JMFTPSyncFileManager: RCTEventEmitter {
         
         let ftpClient = JMFTPClient.init(userInfo: userInfo)
         ftpClient.delegate = self
-//        ftpClient.tag = Int(tag)
+        ftpClient.tag = Int(tag) ?? 0
         
         realFtpDic[tag] = JMRealDownUpdataFtpModel(ftpClient: ftpClient, resolver: resolver, rejecter: rejecter, isDown: false, progress: 0,  requetUrl: path, tag: tag)
         ftpClient.uploadFile(withRemotePath: path, loaclPath: locaUrl + fileName)
