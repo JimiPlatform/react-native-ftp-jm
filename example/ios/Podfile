@@ -2,8 +2,6 @@ platform :ios, '9.0'
 
 target 'example' do
   #use_frameworks!
-  
-  pod 'CocoaAsyncSocket', :modular_headers => true
 
   pod 'React', :path => '../../../rn-lib/node_modules/react-native', :subspecs => [
    'Core',
@@ -23,7 +21,7 @@ target 'example' do
    'RCTImage',
    'RCTVibration',
    'RCTCameraRoll',
-  ], :modular_headers => true
+  ]
   
   pod 'yoga', :path => '../../../rn-lib/node_modules/react-native/ReactCommon/yoga'
   pod 'DoubleConversion', :podspec => '../../../rn-lib/node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'

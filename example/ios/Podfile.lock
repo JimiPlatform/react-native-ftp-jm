@@ -1,19 +1,13 @@
 PODS:
   - boost-for-react-native (1.63.0)
-  - CocoaAsyncSocket (7.6.3)
   - DoubleConversion (1.1.6)
   - Folly (2018.10.22.00):
     - boost-for-react-native
     - DoubleConversion
     - glog
   - glog (0.3.5)
-  - JMSmartFTPUtils (1.0.2)
   - React (0.58.6):
     - React/Core (= 0.58.6)
-  - react-native-ftp-jm (1.0.6):
-    - CocoaAsyncSocket (= 7.6.3)
-    - JMSmartFTPUtils (= 1.0.2)
-    - React
   - React/ART (0.58.6):
     - React/Core
   - React/Core (0.58.6):
@@ -79,11 +73,9 @@ PODS:
   - yoga (0.58.6.React)
 
 DEPENDENCIES:
-  - CocoaAsyncSocket
   - DoubleConversion (from `../../../rn-lib/node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - Folly (from `../../../rn-lib/node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../../../rn-lib/node_modules/react-native/third-party-podspecs/glog.podspec`)
-  - react-native-ftp-jm (from `../../../rn-lib/node_modules/react-native-ftp-jm/react-native-ftp-jm.podspec`)
   - React/ART (from `../../../rn-lib/node_modules/react-native`)
   - React/Core (from `../../../rn-lib/node_modules/react-native`)
   - React/CxxBridge (from `../../../rn-lib/node_modules/react-native`)
@@ -107,8 +99,6 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - boost-for-react-native
-    - CocoaAsyncSocket
-    - JMSmartFTPUtils
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -119,8 +109,6 @@ EXTERNAL SOURCES:
     :podspec: "../../../rn-lib/node_modules/react-native/third-party-podspecs/glog.podspec"
   React:
     :path: "../../../rn-lib/node_modules/react-native"
-  react-native-ftp-jm:
-    :podspec: "../../../rn-lib/node_modules/react-native-ftp-jm/react-native-ftp-jm.podspec"
   RNGestureHandler:
     :path: "../../../rn-lib/node_modules/react-native-gesture-handler"
   yoga:
@@ -128,16 +116,13 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
-  CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
   DoubleConversion: bb338842f62ab1d708ceb63ec3d999f0f3d98ecd
   Folly: de497beb10f102453a1afa9edbf8cf8a251890de
   glog: aefd1eb5dda2ab95ba0938556f34b98e2da3a60d
-  JMSmartFTPUtils: be1e757c9faed0db3a768ad90ba34485cf09ae68
   React: f85504c211ebbb63cfa0512572e124b185a94de2
-  react-native-ftp-jm: 0e7ed01277c1e9afa373ba765be95f481df0d03a
   RNGestureHandler: b65d391f4f570178d657b99a16ec99d09b8656b0
   yoga: 32d7ef1081951e9a35a4c72a7be797598b138a48
 
-PODFILE CHECKSUM: 091b0654d4cdd0b8ee5ae7818f9142a64ad176b0
+PODFILE CHECKSUM: 8a558ea7890779316e858402cc00ebd3f91cf1f6
 
 COCOAPODS: 1.10.0
