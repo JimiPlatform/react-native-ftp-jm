@@ -16,6 +16,7 @@ Pod::Spec.new do |s|
   s.dependency "React"
   s.dependency 'JMSmartFTPUtils', '1.0.2'
   s.dependency 'CocoaAsyncSocket'
+  s.
 
 end
 
