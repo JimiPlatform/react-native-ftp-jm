@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "react-native-ftp-jm"
-  s.version      = "1.0.7-bate1"
+  s.version      = "1.0.7"
   s.summary      = "react-native-ftp-jm"
   s.description  = <<-DESC
                   react-native-ftp-jm
